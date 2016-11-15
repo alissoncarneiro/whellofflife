@@ -1,0 +1,56 @@
+body
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+.sec1{
+    position: absolute;
+    top: 142px;
+    left: 339px;
+    font-weight: bold;
+    font-family: calibri;
+    text-align: center;
+}
+
+.sec2{
+    position: absolute;
+    top: 262px;
+    left: 597px;
+    font-weight: bold;
+    font-family: calibri;
+    text-align: center; 
+}
+
+.sec3{
+   position: absolute;
+    top: 492px;
+    left: 576px;
+    font-weight: bold;
+    font-family: calibri;
+    text-align: center;   
+}
+.sec4{
+    position: absolute;
+    top: 620px;
+    left: 345px;
+    font-weight: bold;
+    font-family: calibri;
+    text-align: center; 
+}
+.sec5{
+    position: absolute;
+    top: 490px;
+    left: 89px;
+    font-weight: bold;
+    font-family: calibri;
+    text-align: center;  
+}
+.sec6{
+    position: absolute;
+    top: 260px;
+    left: 124px;
+    font-weight: bold;
+    font-family: calibri;
+    text-align: center;   
+}
+
