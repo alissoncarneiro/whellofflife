@@ -4,11 +4,13 @@ canvas.addEventListener('mousemove', track_mouse, false);
 canvas.addEventListener('click', click_mouse, false);
 
 TextAlignment = {
-  Left : 0,
-  Center : 1,
-  Right : 2,
-  Justify : 3
+  Left: 0,
+  Center: 1,
+  Right: 2,
+  Justify: 3,
 };
+
+colors = ['', 'red', 'yellow', 'green', 'purple', 'orange', 'blue'];
 
 function Point(x, y) {
   this.x = x;
@@ -16,7 +18,7 @@ function Point(x, y) {
 }
 
 function Band(center, minRadius, maxRadius, bandNo) {
-  this.bandNo=bandNo;
+  this.bandNo = bandNo;
   this.center = center;
   this.minRadius = minRadius;
   this.maxRadius = maxRadius;
@@ -28,9 +30,12 @@ function arc(band, startAngle, endAngle, text, arcNo, alignment) {
   this.startAngle = startAngle;
   this.endAngle = endAngle;
   this.text = text;
+  this.color = colors[arcNo - 1];
+  console.log('color number', arcNo - 1);
+  console.log('color array', colors[arcNo - 1]);
   this.alignment = (alignment !== undefined) ? alignment : TextAlignment.Center;
   if (arc.arcs === undefined) {
-    arc.arcs = new Array();
+    arc.arcs = [];
   }
   arc.arcs.push(this);
 }
@@ -91,8 +96,8 @@ arc.isHighlighted = null;
 
 arc.drawAll = function() {
   arc.arcs.forEach(function(a) {
-    console.log('Draw arc');
-    console.log(a);
+    // console.log('Draw arc');
+    // console.log(a);
     if(a.position.bandNo == 3 && a.position.arcPos == 3) {
       drawArc(a, true);
     }else{
@@ -173,7 +178,7 @@ var arc2_4 = new arc(r2, 1.32 * Math.PI, 1.65 * Math.PI, '2', 5);
 var arc2_5 = new arc(r2, 1.65 * Math.PI, 2 * Math.PI, '2', 6);
 var arc2_6 = new arc(r2, 1.98 * Math.PI, 2.33 * Math.PI, '2', 7);
 
-var r3 = new Band(center, 110, 145,3);
+var r3 = new Band(center, 110, 145, 3);
 var arc3 = new arc(r3, 0 * Math.PI, 0.33 * Math.PI, '3', 1);
 var arc3_1 = new arc(r3, 0.33 * Math.PI, 0.66 * Math.PI, '3', 2);
 var arc3_2 = new arc(r3, 0.66 * Math.PI, 0.99 * Math.PI, '3', 3);
@@ -182,7 +187,7 @@ var arc3_4 = new arc(r3, 1.32 * Math.PI, 1.65 * Math.PI, '3', 5);
 var arc3_5 = new arc(r3, 1.65 * Math.PI, 2 * Math.PI, '3', 6);
 var arc3_6 = new arc(r3, 1.98 * Math.PI, 2.33 * Math.PI, '3', 7);
 
-var r4 = new Band(center, 145, 180,4);
+var r4 = new Band(center, 145, 180, 4);
 var arc4   = new arc(r4, 0    * Math.PI, 0.33 * Math.PI, '4', 1);
 var arc4_1 = new arc(r4, 0.33 * Math.PI, 0.66 * Math.PI, '4', 2);
 var arc4_2 = new arc(r4, 0.66 * Math.PI, 0.99 * Math.PI, '4', 3);
@@ -192,7 +197,7 @@ var arc4_5 = new arc(r4, 1.65 * Math.PI, 2    * Math.PI, '4', 6);
 var arc4_6 = new arc(r4, 1.98 * Math.PI, 2.33 * Math.PI, '4', 7);
 
 
-var r5 = new Band(center, 180, 215,5);
+var r5 = new Band(center, 180, 215, 5);
 var arc5   = new arc(r5, 0    * Math.PI, 0.33 * Math.PI, '5', 1);
 var arc5_1 = new arc(r5, 0.33 * Math.PI, 0.66 * Math.PI, '5', 2);
 var arc5_2 = new arc(r5, 0.66 * Math.PI, 0.99 * Math.PI, '5', 3);
@@ -230,7 +235,7 @@ function drawArc(arc, isHighlighted) {
   context.lineWidth = arc.band.maxRadius - arc.band.minRadius;
 
   // line color
-  context.strokeStyle = isHighlighted ? 'grey' : 'lightgrey';
+  context.strokeStyle = isHighlighted ? 'grey' : arc.color;
   context.stroke();
 
   drawTextAlongArc(arc.text, center, radAvg, startAngle, endAngle, arc.alignment);
@@ -343,10 +348,9 @@ function track_mouse(e) {
 }
 
 function click_mouse(e) {
-
   var target = e.currentTarget;
-  console.log('ALISSON');
-  console.log('ALISSON');
+  // console.log('ALISSON');
+  // console.log('ALISSON');
   var mousePos = getMousePos(target, e);
 
   arc.doTasks(mousePos);
